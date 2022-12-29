@@ -110,7 +110,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 + (void)setMotionEffectEnabled:(BOOL)motionEffectEnabled;               // default is YES
 
 #pragma mark - Show Methods
-
++ (SVProgressHUD *)sharedView;
 + (void)show;
 + (void)showWithMaskType:(SVProgressHUDMaskType)maskType __attribute__((deprecated("Use show and setDefaultMaskType: instead.")));
 + (void)showWithStatus:(nullable NSString*)status;
@@ -148,5 +148,5 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 
 + (NSTimeInterval)displayDurationForString:(nullable NSString*)string;
 
++ (void)resetImageAnimationIfNeeded;
 @end
-

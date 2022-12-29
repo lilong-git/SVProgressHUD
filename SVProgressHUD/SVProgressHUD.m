@@ -886,6 +886,19 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     }];
 }
 
++ (void)resetImageAnimationIfNeeded {
+    SVProgressHUD *hud = [SVProgressHUD sharedView];
+    if ([hud.imageView.layer.animationKeys containsObject:@"rotationAnimation"]) {
+        return;
+    }
+    CABasicAnimation *imageViewAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    imageViewAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+    imageViewAnimation.duration = 2;
+    imageViewAnimation.cumulative = YES;
+    imageViewAnimation.repeatCount = HUGE_VALF;
+    [hud.imageView.layer addAnimation:imageViewAnimation forKey:@"rotationAnimation"];
+}
+
 - (void)fadeIn:(id)data {
     // Update the HUDs frame to the new content and position HUD
     [self updateHUDFrame];
